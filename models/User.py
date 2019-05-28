@@ -13,7 +13,7 @@ class User(db.Entity):
     postcode = Optional(str)
     closest_station = Optional(str)
 
-    def is_pass_valid(self, plaintext):
+    def is_password_valid(self, plaintext):
         return bcrypt.checkpw(plaintext.encode('utf8'),
         self.password_hash.encode('utf8'))
 
