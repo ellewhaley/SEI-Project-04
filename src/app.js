@@ -1,17 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import axios from 'axios'
+import { HashRouter, Route, Switch } from 'react-router-dom'
+
+import 'bulma'
+import './style.scss'
+
+import Home from './components/Home'
 
 class App extends React.Component {
 
-  componentDidMount() {
-    axios.get('/api')
-      .then(res => console.log(res.data))
-  }
-
   render() {
     return (
-      <h1>Hello World</h1>
+      <HashRouter>
+        <main>
+          <Switch>
+            <Route path="/" component={Home} />
+          </Switch>
+        </main>
+      </HashRouter>
     )
   }
 }

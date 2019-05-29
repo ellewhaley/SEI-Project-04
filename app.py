@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from pony.orm import Database
 from config.environment import db_uri
 
@@ -11,6 +11,6 @@ from config import routes
 
 db.generate_mapping(create_tables=True)
 
-@app.route('/')
-def home():
-    return 'Hello World!', 200
+@app.errorhandler(404)
+def not_found(_error):
+    return jsonify({'message': 'Not found'}), 404
