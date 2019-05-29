@@ -6,6 +6,8 @@ import 'bulma'
 import './style.scss'
 
 import Home from './components/Home'
+import Register from './components/Register'
+import Login from './components/Login'
 
 class App extends React.Component {
 
@@ -14,6 +16,8 @@ class App extends React.Component {
       <HashRouter>
         <main>
           <Switch>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
             <Route path="/" component={Home} />
           </Switch>
         </main>
