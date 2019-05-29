@@ -8,6 +8,7 @@ import './style.scss'
 import Home from './components/Home'
 import Register from './components/Register'
 import Login from './components/Login'
+import Map from './components/Map'
 
 class App extends React.Component {
 
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <Route path="/map" component={Map} />
             <Route path="/" component={Home} />
           </Switch>
         </main>

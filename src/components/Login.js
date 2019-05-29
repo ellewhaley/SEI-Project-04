@@ -24,7 +24,7 @@ class Login extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/login', this.state.data)
-      .then(() => this.props.history.push('/home'))
+      .then(() => this.props.history.push('/map'))
       .catch((err) => this.setState({ errors: err.response.data }))
   }
 
