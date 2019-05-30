@@ -10,7 +10,10 @@ with db_session():
     elle = User(
         username='elle',
         email='elle@gmail.com',
-        password_hash=schema.generate_hash('pass')
+        password_hash=schema.generate_hash('pass'),
+        own_postcode='se270rs',
+        friend_postcode='se270rs',
+        closest_station='West Norwood'
     )
 
     db.commit()

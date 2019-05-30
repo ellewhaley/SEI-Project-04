@@ -10,7 +10,8 @@ class User(db.Entity):
     username = Required(str, unique=True)
     email = Required(str, unique=True)
     password_hash = Required(str)
-    postcode = Optional(str)
+    own_postcode = Optional(str)
+    friend_postcode = Optional(str)
     closest_station = Optional(str)
 
     def is_password_valid(self, plaintext):
@@ -39,7 +40,8 @@ class UserSchema(Schema):
     email = fields.Str(required=True)
     password = fields.Str(load_only=True)
     password_confirmation = fields.Str(load_only=True)
-    postcode = fields.Str()
+    own_postcode = fields.Str()
+    friend_postcode = fields.Str()
     closest_station = fields.Str()
 
     def generate_hash(self, plaintext):

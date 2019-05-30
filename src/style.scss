@@ -1,12 +1,39 @@
+.homepage {
+  background-image: url('./assets/Homepage.jpg');
+  background-size: cover;
+
+  .title-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    max-width: 450px;
+  }
+  .title {
+      font-size: 70px;
+      text-shadow: 2px 2px 2px black;
+    }
+  .subtitle {
+      text-shadow: 1px 1px 1px black;
+    }
+}
+
 .marker {
   height: 40px;
 }
 
-.map-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .start-button {
+// .map-box {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   .start-button {
+//     position: absolute;
+//     z-index: 10;
+//   }
+// }
 
-  }
+.mapbox-map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
 }
