@@ -50,3 +50,10 @@ map-section{
   padding: 0;
   position: absolute;
 }
+
+.show-venues-button {
+  position: absolute;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+}
