@@ -39,3 +39,11 @@ def login():
         'message': f'Welcome back {user.username}',
         'token': user.generate_token()
     })
+
+# @router.route('/search', methods=['POST'])
+# @db_session
+# def login():
+#
+#     schema = UserSchema()
+#
+#     })

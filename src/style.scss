@@ -6,6 +6,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     max-width: 450px;
+    padding-bottom: 20px;
   }
   .title {
       font-size: 70px;
@@ -14,21 +15,33 @@
   .subtitle {
       text-shadow: 1px 1px 1px black;
     }
+  .start-button {
+      font-size: 20px;
+  }
 }
 
 .marker {
   height: 40px;
 }
 
-// .map-box {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   .start-button {
-//     position: absolute;
-//     z-index: 10;
-//   }
-// }
+map-section{
+  margin: 0 auto;
+  padding: 0;
+}
+
+.map-form {
+  margin: 0 auto;
+  width: 22%;
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 1);
+  height: 100%;
+  padding: 20px 20px 0px 0px;
+
+  .map-input {
+    width: 90%
+  }
+}
 
 .mapbox-map {
   width: 100%;

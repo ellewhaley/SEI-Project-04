@@ -20,8 +20,30 @@ class Map extends React.Component {
       .setLngLat(this.props.currentLocation)
       .addTo(this.map)
 
+    this.currrentLocation = new mapboxgl.Popup({closeOnClick: false})
+      .setLngLat(this.props.currentLocation)
+      .setHTML('<h1>You are here!</h1>')
+      .addTo(this.map)
+
+    this.locationOne = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    })
+
+  }
+
+  componentDidUpdate() {
+    if(!this.props.userLocation) return false
+
     this.userLocation = new mapboxgl.Marker()
       .setLngLat(this.props.userLocation)
+      .addTo(this.map)
+
+    this.userLocation = new mapboxgl.Popup({closeOnClick: false})
+      .setLngLat(this.props.userLocation)
+      .setHTML('<h1>You friend is here!</h1>')
       .addTo(this.map)
 
     this.bounds = new mapboxgl.LngLatBounds()
@@ -39,26 +61,6 @@ class Map extends React.Component {
     return (
       <div className="mapbox-map" ref={el => this.mapCanvas = el}/>
     )
-  //   render() {
-  //     return(
-  //       <div className="map-container">
-  //         {!Auth.isAuthenticated() && <Link to="/" className="button is-primary start-button">Start Planning</Link>}
-  //         <Mapbox
-  //           style='mapbox://styles/mapbox/streets-v9'
-  //           containerStyle={{
-  //             height: '100vh',
-  //             width: '100vw'
-  //           }}>
-  //           <Marker
-  //             coordinates={[-0.2416815, 51.5285582]}
-  //             anchor='bottom'>
-  //             <img className='marker' src='assets/marker.png'/>
-  //           </Marker>
-  //         </Mapbox>
-  //       </div>
-  //     )
-  //   }
-  // }
   }
 }
 export default Map

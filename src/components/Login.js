@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Auth from '../lib/Auth'
 
 class Login extends React.Component {
 
@@ -24,7 +25,10 @@ class Login extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('/api/login', this.state.data)
-      .then(() => this.props.history.push('/map'))
+      .then(res => {
+        Auth.setToken(res.data.token)
+        this.props.history.push('/')
+      })
       .catch((err) => this.setState({ errors: err.response.data }))
   }
 
@@ -50,7 +54,7 @@ class Login extends React.Component {
                   {this.state.error && <div className="help is-danger">{this.state.error}</div>}
                 </div>
 
-                <button className="button is-warning">Submit</button>
+                <button className="button is-dark">Submit</button>
               </form>
             </div>
           </div>
