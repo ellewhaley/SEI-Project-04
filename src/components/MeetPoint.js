@@ -90,7 +90,7 @@ class MeetPoint extends React.Component {
           </form>
         </div>
         <div className="mapbox-map">
-          {this.state.userLocation && <Link to="/" className="button is-primary show-venues-button">Choose a venue</Link>}
+          {this.state.userLocation && <Link to="/venueindex" className="button is-primary show-venues-button">Choose a venue</Link>}
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}

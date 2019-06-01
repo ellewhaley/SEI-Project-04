@@ -20,7 +20,7 @@ class Map extends React.Component {
       .setLngLat(this.props.currentLocation)
       .addTo(this.map)
 
-    this.currrentLocation = new mapboxgl.Popup({closeOnClick: false})
+    this.currrentLocation = new mapboxgl.Popup({closeOnClick: false, offset: 20})
       .setLngLat(this.props.currentLocation)
       .setHTML('<h1>You are here!</h1>')
       .addTo(this.map)
