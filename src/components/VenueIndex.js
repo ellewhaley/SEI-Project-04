@@ -15,6 +15,8 @@ class VenueIndex extends React.Component {
       venues: []
     }
 
+    this.getVenues = this.getVenues.bind(this)
+
   }
 
   componentDidMount() {
@@ -23,11 +25,6 @@ class VenueIndex extends React.Component {
       this.setState({ currentLocation: [longitude, latitude] })
     })
 
-    axios.get('/api/venues')
-      .then(res => {
-        console.log(res.data)
-        this.setState({ venues: res.data.results })
-      })
   }
 
   render() {
@@ -39,7 +36,7 @@ class VenueIndex extends React.Component {
           <p className="title is-2">Choose a venue</p>
           <div className="columns is-multiline is-mobile">
             {this.state.venues.map(venue =>
-              <div key={venue.id} className="column">
+              <div key={venue.id} className="column is-desktop">
                 <VenueCard {...venue} />
               </div>
             )}
@@ -49,6 +46,7 @@ class VenueIndex extends React.Component {
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}
+            getVenues={this.getVenues}
           />
         </div>
       </section>

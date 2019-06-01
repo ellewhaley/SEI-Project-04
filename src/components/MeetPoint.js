@@ -16,6 +16,7 @@ class MeetPoint extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getVenues = this.getVenues.bind(this)
   }
 
   handleChange({target: { name, value }}) {
@@ -41,6 +42,19 @@ class MeetPoint extends React.Component {
         console.log(res.data.result)
         const { longitude, latitude } = res.data.result
         this.setState({ userLocation: [longitude, latitude] })
+      })
+  }
+
+  getVenues(location) {
+    axios.get('/api/venues', {
+      params: {
+        location: `${location.lat},${location.lng}`
+      }
+    })
+      .then(res => {
+        console.log(res.data)
+        res.data.results.splice(0,1)
+        this.setState({ venues: res.data.results })
       })
   }
 
@@ -93,6 +107,8 @@ class MeetPoint extends React.Component {
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}
+            getVenues={this.getVenues}
+            venues={this.state.venues}
           />
         </div>
       </section>
