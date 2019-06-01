@@ -54,7 +54,11 @@ class Map extends React.Component {
       .setLngLat(this.bounds.getCenter())
       .addTo(this.map)
 
-    this.map.setCenter(this.bounds.getCenter())
+    // this.map.setCenter(this.bounds.getCenter())
+    this.map.flyTo({
+      center: this.bounds.getCenter(),
+      zoom: 11
+    })
   }
 
   render() {

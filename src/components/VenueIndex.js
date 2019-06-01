@@ -22,11 +22,16 @@ class VenueIndex extends React.Component {
       const { latitude, longitude } = position.coords
       this.setState({ currentLocation: [longitude, latitude] })
     })
-    axios.get('api/venues')
-      .then(res => this.setState({ venues: res.data }))
+
+    axios.get('/api/venues')
+      .then(res => {
+        console.log(res.data)
+        this.setState({ venues: res.data.results })
+      })
   }
 
   render() {
+    // console.log(this.state.venues)
     if(!this.state.currentLocation) return <Loading />
     return(
       <section className="section map-section">
@@ -34,7 +39,7 @@ class VenueIndex extends React.Component {
           <p className="title is-2">Choose a venue</p>
           <div className="columns is-multiline is-mobile">
             {this.state.venues.map(venue =>
-              <div key={venue._id} className="column">
+              <div key={venue.id} className="column">
                 <VenueCard {...venue} />
               </div>
             )}
@@ -50,5 +55,6 @@ class VenueIndex extends React.Component {
     )
   }
 }
+
 
 export default VenueIndex

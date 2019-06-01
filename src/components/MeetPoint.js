@@ -13,7 +13,6 @@ class MeetPoint extends React.Component {
     this.state = {
       data: {},
       errors: ''
-      // userLocation: [-0.10847, 51.429474]
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -90,7 +89,7 @@ class MeetPoint extends React.Component {
           </form>
         </div>
         <div className="mapbox-map">
-          {this.state.userLocation && <Link to="/venueindex" className="button is-primary show-venues-button">Choose a venue</Link>}
+          {this.state.userLocation && <Link to="/venues" className="button is-primary show-venues-button">Choose a venue</Link>}
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}
