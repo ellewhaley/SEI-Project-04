@@ -25,7 +25,7 @@ class Register extends React.Component {
     e.preventDefault()
     axios.post('/api/register', this.state.data)
       .then(() => this.props.history.push('/login'))
-      .catch((err) => this.setState({ errors: err.response.data.errors }))
+      .catch((err) => this.setState({ errors: err.response.data }))
   }
 
   render() {
@@ -41,7 +41,7 @@ class Register extends React.Component {
                   <div className="control">
                     <input className="input" name="username" placeholder="eg: leela3000" onChange={this.handleChange}/>
                   </div>
-                  {this.state.error.username && <div className="help is-danger">{this.state.errors.username}</div>}
+                  {this.state.errors.username && <div className="help is-danger">{this.state.errors.username}</div>}
                 </div>
                 <div className="field">
                   <label className="label">Email</label>

@@ -49,22 +49,18 @@ class MeetPoint extends React.Component {
   getVenues(location) {
     axios.get('/api/venues', {
       params: {
-        location: `${location.lat},${location.lng}`
+        location: `${location.lat},${location.lng}`,
+        type: this.state.data.type
       }
     })
-      .then(res => {
-        res.data.results.splice(0,1)
-        this.setState({ venues: res.data.results.filter(venue => {
-          return venue.types.includes(this.state.data.type)
-        })})
-      })
+      .then(res => this.setState({ venues: res.data.results }))
   }
 
   render() {
     if(!this.state.currentLocation) return <Loading />
     return (
-      <section className="section map-section">
-        <div className="columns is-multiline is-mobile">
+      <section className="section map-section is-mobile">
+        <div className="columns is-multiline">
           <div className="column map-form-column">
             {!this.state.venues &&
               <MapForm
@@ -82,7 +78,7 @@ class MeetPoint extends React.Component {
             }
           </div>
         </div>
-        <div className="mapbox-map">
+        <div className="mapbox-map is-mobile">
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}

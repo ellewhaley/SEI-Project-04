@@ -6,9 +6,13 @@ import mapboxgl from 'mapbox-gl'
 mapboxgl.accessToken = process.env.MAP_BOX_TOKEN
 
 class Map extends React.Component {
+  constructor(props){
+    super(props)
+    this.markers = []
+  }
+
 
   componentDidMount() {
-
     this.map = new mapboxgl.Map({
       container: this.mapCanvas,
       style: 'mapbox://styles/mapbox/streets-v9',
@@ -41,7 +45,7 @@ class Map extends React.Component {
       .setLngLat(this.props.userLocation)
       .addTo(this.map)
 
-    this.userLocation = new mapboxgl.Popup({closeOnClick: false})
+    this.userLocation = new mapboxgl.Popup({closeOnClick: false, offset: 20})
       .setLngLat(this.props.userLocation)
       .setHTML('<h1>You friend is here!</h1>')
       .addTo(this.map)
@@ -56,14 +60,27 @@ class Map extends React.Component {
 
     if(!this.props.venues) this.props.getVenues(this.bounds.getCenter())
 
-    // this.map.setCenter(this.bounds.getCenter())
+    if (this.props.venues) {
+      // removes the markers from the map
+      this.markers.forEach(marker => marker.remove())
+
+      // add new markers based on the API request
+      this.markers = this.props.venues.map(venue => {
+        return new mapboxgl.Marker()
+          .setLngLat(venue.geometry.location)
+          .addTo(this.map)
+
+      })
+    }
+
     this.map.flyTo({
       center: this.bounds.getCenter(),
-      zoom: 11
+      zoom: 12
     })
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="mapbox-map" ref={el => this.mapCanvas = el}/>
     )

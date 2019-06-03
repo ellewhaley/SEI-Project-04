@@ -9,7 +9,7 @@ class Login extends React.Component {
 
     this.state = {
       data: {},
-      error: ''
+      errors: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -18,7 +18,7 @@ class Login extends React.Component {
 
   handleChange({target: { name, value }}) {
     const data = { ...this.state.data, [name]: value }
-    const error = { ...this.state.error, [name]: '' }
+    const error = null
     this.setState({ data, error })
   }
 
@@ -29,7 +29,7 @@ class Login extends React.Component {
         Auth.setToken(res.data.token)
         this.props.history.push('/')
       })
-      .catch((err) => this.setState({ error: err.response.data }))
+      .catch(() => this.setState({ error: 'Incorrect Credentials' }))
   }
 
   render() {

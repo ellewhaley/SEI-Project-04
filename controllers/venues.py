@@ -9,10 +9,15 @@ router = Blueprint('venues', __name__)
 @db_session
 def index():
     location = request.args.get('location')
-    req = requests.get(f'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={location}&radius=1500',
+    place_type = request.args.get('type')
+
+    req = requests.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json',
         params={
-            'key': google_places_token
-            }
+            'key': google_places_token,
+            'location': location,
+            'radius': 1000,
+            'type': place_type
+        }
     )
 
     return jsonify(req.json())

@@ -2,7 +2,7 @@ import React from 'react'
 
 const MapForm = ({ handleChange, handleSubmit }) => {
   return (
-    <div className="container map-form">
+    <div className="container map-form is-mobile">
       <p className="title is-2">Meet Up</p>
       <br/>
       <p className="subtitle is-5">Enter your friends postcode and decide where you want to meet.</p>
@@ -32,7 +32,7 @@ const MapForm = ({ handleChange, handleSubmit }) => {
             <select name="type" onChange={handleChange}>
               <option value=""></option>
               <option value="bar">Drinks</option>
-              <option value="food">Food</option>
+              <option value="restaurant">Food</option>
               <option value="cafe">Coffee</option>
             </select>
           </div>
