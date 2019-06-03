@@ -56,7 +56,6 @@ class Map extends React.Component {
 
     if(!this.props.venues) this.props.getVenues(this.bounds.getCenter())
 
-
     // this.map.setCenter(this.bounds.getCenter())
     this.map.flyTo({
       center: this.bounds.getCenter(),

@@ -9,7 +9,7 @@ class Login extends React.Component {
 
     this.state = {
       data: {},
-      errors: ''
+      error: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -18,8 +18,8 @@ class Login extends React.Component {
 
   handleChange({target: { name, value }}) {
     const data = { ...this.state.data, [name]: value }
-    const errors = { ...this.state.errors, [name]: '' }
-    this.setState({ data, errors })
+    const error = { ...this.state.error, [name]: '' }
+    this.setState({ data, error })
   }
 
   handleSubmit(e) {
@@ -29,7 +29,7 @@ class Login extends React.Component {
         Auth.setToken(res.data.token)
         this.props.history.push('/')
       })
-      .catch((err) => this.setState({ errors: err.response.data }))
+      .catch((err) => this.setState({ error: err.response.data }))
   }
 
   render() {

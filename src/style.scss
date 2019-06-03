@@ -24,52 +24,50 @@
   height: 40px;
 }
 
-map-section{
+.map-section{
   margin: 0 auto;
   padding: 0;
 
-
-}
-
-.map-form {
-  margin: 0 auto;
-  width: 22%;
-  position: absolute;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 1);
-  height: 100%;
-  padding: 20px 20px 0px 0px;
-
-  .map-input {
-    width: 90%
+  .map-form-column {
+    padding: 0;
   }
-}
 
-.venue-index {
-  margin: 0 auto;
-  width: 22%;
-  position: absolute;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 1);
-  height: 100%;
-  padding: 20px 20px 0px 0px;
-}
+  .map-form {
+    margin: 0 auto;
+    width: 22%;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 1);
+    height: 100%;
+    padding: 20px;
 
-.mapbox-map {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-}
+    .map-input {
+    }
+  }
 
-.show-venues-button {
-  position: absolute;
-  z-index: 10;
-  align-items: center;
-  justify-content: center;
-}
+  .venue-index {
+    margin: 0 auto;
+    width: 22%;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 1);
+    height: 100%;
+    padding: 20px;
+    overflow-y: scroll;
 
-.venue-card {
+    .venue-card {
+      margin-top: 10px;
+      height: 200px;
+
+    }
+  }
+
+  .mapbox-map {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+  }
 
 }

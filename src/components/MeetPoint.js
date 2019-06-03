@@ -26,7 +26,7 @@ class MeetPoint extends React.Component {
     const errors = { ...this.state.errors, [name]: '' }
     this.setState({ data, errors })
 
-    console.log(this.state)
+    console.log(this.state.data.type)
   }
 
   componentDidMount() {
@@ -38,7 +38,6 @@ class MeetPoint extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state)
     axios.get(`https://api.postcodes.io/postcodes/${this.state.data.friend_postcode}`)
       .then(res => {
         console.log(res.data.result)
@@ -54,19 +53,19 @@ class MeetPoint extends React.Component {
       }
     })
       .then(res => {
-        console.log(res.data)
         res.data.results.splice(0,1)
-        this.setState({ venues: res.data.results })
+        this.setState({ venues: res.data.results.filter(venue => {
+          return venue.types.includes(this.state.data.type)
+        })})
       })
   }
 
   render() {
     if(!this.state.currentLocation) return <Loading />
-    console.log(this.state.venues)
     return (
       <section className="section map-section">
         <div className="columns is-multiline is-mobile">
-          <div className="column is-desktop">
+          <div className="column map-form-column">
             {!this.state.venues &&
               <MapForm
                 handleChange={this.handleChange}
