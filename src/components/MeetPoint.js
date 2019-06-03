@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import Map from './Map'
 import Loading from './Loading'
+import VenueCard from './VenueCard'
+import MapForm from './MapForm'
 
 class MeetPoint extends React.Component {
 
@@ -60,50 +62,28 @@ class MeetPoint extends React.Component {
 
   render() {
     if(!this.state.currentLocation) return <Loading />
+    console.log(this.state.venues)
     return (
       <section className="section map-section">
-        <div className="container map-form">
-          <p className="title is-2">Meet Up</p>
-          <br/>
-          <p className="subtitle is-5">Enter your friends postcode and decide where you want to meet.</p>
-          <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <label className="label">Your Location</label>
-              <div className="select map-input">
-                <select name="venue">
-                  <option value="">Use Current Location</option>
-                </select>
-              </div>
+        <div className="columns is-multiline is-mobile">
+          <div className="column is-desktop">
+            {!this.state.venues &&
+              <MapForm
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            }
+            {this.state.venues &&<div className="column venue-index">
+              {this.state.venues && this.state.venues.map(venue =>
+                <div key={venue.id}>
+                  <VenueCard {...venue} />
+                </div>
+              )}
             </div>
-            <div className="field">
-              <div className="control">
-                <label  className="label">Your friends Location</label>
-                <input
-                  className="input map-input"
-                  type="text"
-                  placeholder="Enter your friends Postcode"
-                  onChange={this.handleChange}
-                  name="friend_postcode"/>
-              </div>
-            </div>
-            <div className="field map-input">
-              <label className="label">What are you feeling?</label>
-              <div className="select">
-                <select name="venue">
-                  <option value="">Select</option>
-                  <option value="bar">Bar</option>
-                  <option value="pub">Pub</option>
-                  <option value="restaurant">Restaurant</option>
-                  <option value="cafe">Cafe</option>
-                  <option value="night_club">Night Club</option>
-                </select>
-              </div>
-            </div>
-            <button className="button is-dark">Submit</button>
-          </form>
+            }
+          </div>
         </div>
         <div className="mapbox-map">
-          {this.state.userLocation && <Link to="/venues" className="button is-primary show-venues-button">Choose a venue</Link>}
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}

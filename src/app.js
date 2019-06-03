@@ -12,7 +12,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 
 import MeetPoint from './components/MeetPoint'
-import VenueIndex from './components/VenueIndex'
+// import VenueIndex from './components/VenueIndex'
 
 class App extends React.Component {
 
@@ -32,7 +32,6 @@ class App extends React.Component {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/meetpoint" component={MeetPoint} />
-            <Route path="/venues" component={VenueIndex} />
             <Route path="/" component={Home} />
           </Switch>
         </main>
