@@ -11,7 +11,6 @@ class Map extends React.Component {
     this.markers = []
   }
 
-
   componentDidMount() {
     this.map = new mapboxgl.Map({
       container: this.mapCanvas,
