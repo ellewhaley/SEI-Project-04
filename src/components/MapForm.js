@@ -3,9 +3,7 @@ import React from 'react'
 const MapForm = ({ handleChange, handleSubmit }) => {
   return (
     <div className="container map-form is-mobile">
-      <p className="title is-2">Meet Up</p>
-      <br/>
-      <p className="subtitle is-5">Enter your friends postcode and decide where you want to meet.</p>
+      <p className="title is-3">Meet Up...</p>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <div className="control">

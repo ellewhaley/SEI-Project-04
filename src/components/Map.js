@@ -19,11 +19,11 @@ class Map extends React.Component {
       center: [-0.07, 51.515]
     })
 
-    this.currentLocation = new mapboxgl.Marker()
+    this.currentLocationMarker = new mapboxgl.Marker()
       .setLngLat(this.props.currentLocation)
       .addTo(this.map)
 
-    this.currrentLocation = new mapboxgl.Popup({closeOnClick: false, offset: 20})
+    this.currrentLocationPopup = new mapboxgl.Popup({closeOnClick: false, offset: 30})
       .setLngLat(this.props.currentLocation)
       .setHTML('<h1>You are here!</h1>')
       .addTo(this.map)
@@ -37,14 +37,29 @@ class Map extends React.Component {
 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if(prevProps.venues && !this.props.venues) {
+      // venues have been reset...
+      this.centerPointMarker.remove()
+      this.userLocationMarker.remove()
+      this.userPopup.remove()
+      this.markers.forEach(marker => marker.remove())
+
+      this.map.flyTo({
+        center: [-0.07, 51.515],
+        zoom: 10
+      })
+      return false
+    }
     if(!this.props.userLocation) return false
 
-    this.userLocation = new mapboxgl.Marker()
+    if(this.userLocationMarker) this.userLocationMarker.remove()
+    this.userLocationMarker = new mapboxgl.Marker()
       .setLngLat(this.props.userLocation)
       .addTo(this.map)
 
-    this.userLocation = new mapboxgl.Popup({closeOnClick: false, offset: 20})
+    if(this.userPopup) this.userPopup.remove()
+    this.userPopup = new mapboxgl.Popup({closeOnClick: false, offset: 30})
       .setLngLat(this.props.userLocation)
       .setHTML('<h1>You friend is here!</h1>')
       .addTo(this.map)
@@ -53,7 +68,11 @@ class Map extends React.Component {
     this.bounds.extend(this.props.currentLocation)
     this.bounds.extend(this.props.userLocation)
 
-    this.centerPointMarker = new mapboxgl.Marker()
+    const middleMarker = document.createElement('div')
+    middleMarker.className = 'middle-marker'
+    middleMarker.innerText = '📍'
+    if(this.centerPointMarker) this.centerPointMarker.remove()
+    this.centerPointMarker = new mapboxgl.Marker(middleMarker)
       .setLngLat(this.bounds.getCenter())
       .addTo(this.map)
 
@@ -63,7 +82,6 @@ class Map extends React.Component {
       // removes the markers from the map
       this.markers.forEach(marker => marker.remove())
 
-
       // add new markers based on the API request
       this.markers = this.props.venues.map(venue => {
         const popUp = new mapboxgl.Popup({offset: 20})
@@ -72,15 +90,12 @@ class Map extends React.Component {
           .setLngLat(venue.geometry.location)
           .setPopup(popUp)
           .addTo(this.map)
-
       })
-
     }
-
 
     this.map.flyTo({
       center: this.bounds.getCenter(),
-      zoom: 15
+      zoom: 14
     })
   }
 

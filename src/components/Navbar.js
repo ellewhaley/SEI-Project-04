@@ -33,7 +33,7 @@ class Navbar extends React.Component {
       <nav className="navbar is-dark">
         <div className="container">
           <div className="navbar-brand">
-            <Link to="/" className="navbar-item navbar-home">inbetweenUs</Link>
+            <Link to="/" className="navbar-item navbar-home"><strong>inbetweenUs</strong></Link>
             <a role="button" className={`navbar-burger ${this.state.active ? 'is-active' : ''}`}
               onClick={this.toggleActive}>
               <span aria-hidden="true"></span>
@@ -45,7 +45,7 @@ class Navbar extends React.Component {
 
             <div className="navbar-end">
 
-              {Auth.isAuthenticated() && <Link to={`/users/${Auth.getPayload().sub}/matches`} className="navbar-item">Search</Link>}
+              {Auth.isAuthenticated() && <Link to={`/users/${Auth.getPayload().sub}/matches`} className="navbar-item">Contacts</Link>}
 
               {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item">Sign Up</Link>}
 

@@ -19,7 +19,7 @@ class MeetPoint extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getVenues = this.getVenues.bind(this)
-    // this.handleRefresh = this.handleRefresh.bind(this)
+    this.handleRefresh = this.handleRefresh.bind(this)
   }
 
   handleChange({target: { name, value }}) {
@@ -37,9 +37,12 @@ class MeetPoint extends React.Component {
     })
   }
 
-  // handleRefresh() {
-  //
-  // }
+  handleRefresh() {
+    this.setState({
+      venues: null,
+      userLocation: null
+    })
+  }
 
   handleSubmit(e) {
     e.preventDefault()
@@ -75,8 +78,10 @@ class MeetPoint extends React.Component {
               />
             }
             {this.state.venues &&<div className="column venue-index">
+              <p className="title is-3">Venues...</p>
               {this.state.venues && this.state.venues.map(venue =>
                 <div key={venue.id}>
+
                   <VenueCard {...venue} />
                 </div>
               )}
