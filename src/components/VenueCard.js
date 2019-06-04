@@ -1,6 +1,6 @@
 import React from 'react'
 
-const VenueCard = ({name, icon, vicinity, rating, price_level}) => {
+const VenueCard = ({name, icon, vicinity, rating, price_level, handleChange}) => {
   return (
     <div className="card venue-card">
       <div className="card-header">
@@ -18,6 +18,7 @@ const VenueCard = ({name, icon, vicinity, rating, price_level}) => {
       <div className="card-text">
         <p className="address"><strong>Address:</strong> {vicinity}</p>
       </div>
+      <button onClick={handleChange}>View on map</button>
     </div>
   )
 }

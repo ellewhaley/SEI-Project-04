@@ -10,12 +10,13 @@ router = Blueprint('venues', __name__)
 def index():
     location = request.args.get('location')
     place_type = request.args.get('type')
+    radius = request.args.get('radius')
 
     req = requests.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json',
         params={
             'key': google_places_token,
             'location': location,
-            'radius': 1000,
+            'radius': radius,
             'type': place_type
         }
     )

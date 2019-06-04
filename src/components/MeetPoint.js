@@ -50,7 +50,8 @@ class MeetPoint extends React.Component {
     axios.get('/api/venues', {
       params: {
         location: `${location.lat},${location.lng}`,
-        type: this.state.data.type
+        type: this.state.data.type,
+        radius: this.state.data.radius
       }
     })
       .then(res => this.setState({ venues: res.data.results }))
