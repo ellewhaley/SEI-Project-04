@@ -64,9 +64,6 @@ class Map extends React.Component {
       this.markers.forEach(marker => marker.remove())
 
 
-
-
-
       // add new markers based on the API request
       this.markers = this.props.venues.map(venue => {
         const popUp = new mapboxgl.Popup({offset: 20})
@@ -77,9 +74,6 @@ class Map extends React.Component {
           .addTo(this.map)
 
       })
-
-
-
 
     }
 

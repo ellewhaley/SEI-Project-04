@@ -1,6 +1,8 @@
 import React from 'react'
 
-const VenueCard = ({name, icon, vicinity, rating, price_level, handleChange}) => {
+import { Link } from 'react-router-dom'
+
+const VenueCard = ({name, icon, vicinity, rating, price_level}) => {
   return (
     <div className="card venue-card">
       <div className="card-header">
@@ -18,7 +20,6 @@ const VenueCard = ({name, icon, vicinity, rating, price_level, handleChange}) =>
       <div className="card-text">
         <p className="address"><strong>Address:</strong> {vicinity}</p>
       </div>
-      <button onClick={handleChange}>View on map</button>
     </div>
   )
 }

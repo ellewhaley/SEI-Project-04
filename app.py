@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 from pony.orm import Database
 from config.environment import db_uri
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='public')
 db = Database()
 db.bind('postgres', db_uri)
 

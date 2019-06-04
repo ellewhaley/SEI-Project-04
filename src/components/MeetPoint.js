@@ -19,6 +19,7 @@ class MeetPoint extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getVenues = this.getVenues.bind(this)
+    // this.handleRefresh = this.handleRefresh.bind(this)
   }
 
   handleChange({target: { name, value }}) {
@@ -35,6 +36,10 @@ class MeetPoint extends React.Component {
       this.setState({ currentLocation: [longitude, latitude] })
     })
   }
+
+  // handleRefresh() {
+  //
+  // }
 
   handleSubmit(e) {
     e.preventDefault()
@@ -80,6 +85,7 @@ class MeetPoint extends React.Component {
           </div>
         </div>
         <div className="mapbox-map is-mobile">
+          {this.state.venues && <button className="reset-button" onClick={this.handleRefresh}>Search Again</button>}
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}
