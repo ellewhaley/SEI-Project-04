@@ -10,6 +10,7 @@ app.register_blueprint(venues.router, url_prefix='/api/')
 @app.route('/')
 @app.route('/<path:path>')
 def catch_all(path='index.html'):
+
     if os.path.isfile('public/' + path):
         return app.send_static_file(path)
 
