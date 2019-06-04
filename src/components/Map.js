@@ -62,37 +62,25 @@ class Map extends React.Component {
     if (this.props.venues) {
       // removes the markers from the map
       this.markers.forEach(marker => marker.remove())
-      this.markers.forEach(popup => popup.remove())
+
+
+
+
 
       // add new markers based on the API request
       this.markers = this.props.venues.map(venue => {
+        const popUp = new mapboxgl.Popup({offset: 20})
+          .setText(`${venue.name}`)
         return new mapboxgl.Marker({interactive: true})
           .setLngLat(venue.geometry.location)
+          .setPopup(popUp)
           .addTo(this.map)
-      })
-      this.popup = this.props.venues.map(venue => {
-        return new mapboxgl.Popup({closeOnClick: false, offset: 20})
-          .setLngLat(venue.geometry.location)
-          .setText(`${venue.name}`)
-          .addTo(this.map)
+
       })
 
-      // this.map.on('click', function (e) {
-      //   const venues = this.map.queryRenderedFeatures(e.point, {layers: ['places'] })
-      //   if (!venues.length) {
-      //     return
-      //   }
-      //
-      //   const venue = venue
-      //   this.popup = new mapboxgl.Popup()
-      //     .setLngLat(venue.geometry.location)
-      //     .setHTML(`${venue.name}`)
-      //     .addTo(this.map)
 
-      // // this.map.on('mousemove', function (e) {
-      // //   const features = this.map.queryRenderedFeatures(e.point, { layers: ['places'] })
-      // })
-      // })
+
+
     }
 
 
