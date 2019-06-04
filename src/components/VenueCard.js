@@ -1,15 +1,14 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
 
 const VenueCard = ({name, icon, vicinity, rating, price_level}) => {
   return (
-    <div className="card venue-card">
+    <div className="card venue-card has-text-centered">
       <div className="card-header">
         <h3 className="card-header-title is-6">{name}</h3>
       </div>
       <div className="card-content">
-        <figure className="image is-64x64">
+        <figure className="image is-48x48">
           <img src={icon} alt={name} />
         </figure>
         <div className="card-text">

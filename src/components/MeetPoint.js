@@ -90,7 +90,7 @@ class MeetPoint extends React.Component {
           </div>
         </div>
         <div className="mapbox-map is-mobile">
-          {this.state.venues && <button className="reset-button" onClick={this.handleRefresh}>Search Again</button>}
+          {this.state.venues && <button className="button reset-button is-danger" onClick={this.handleRefresh}>Search Again?</button>}
           <Map
             currentLocation={this.state.currentLocation}
             userLocation={this.state.userLocation}

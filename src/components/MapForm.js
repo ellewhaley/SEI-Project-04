@@ -7,7 +7,7 @@ const MapForm = ({ handleChange, handleSubmit }) => {
       <form onSubmit={handleSubmit}>
         <div className="field">
           <div className="control">
-            <label  className="label">Your friends Location</label>
+            <label  className="label">Your friends Postcode</label>
             <input
               className="input map-input"
               type="text"
@@ -16,17 +16,19 @@ const MapForm = ({ handleChange, handleSubmit }) => {
               name="friend_postcode"/>
           </div>
         </div>
+        <br/>
         <div className="field">
           <div className="control">
-            <label  className="label">Radius from centerpoint (meters)</label>
+            <label  className="label">Radius from centerpoint</label>
             <input
               className="input map-input"
               type="text"
-              placeholder="eg. 500"
+              placeholder="eg. 500 (meters)"
               onChange={handleChange}
               name="radius"/>
           </div>
         </div>
+        <br/>
         <div className="field">
           <label className="label">What are you feeling?</label>
           <div className="select">
@@ -38,7 +40,10 @@ const MapForm = ({ handleChange, handleSubmit }) => {
             </select>
           </div>
         </div>
-        <button className="button is-dark">Submit</button>
+        <br/>
+        <div className="container has-text-centered">
+          <button className="button is-dark">Find Center Point</button>
+        </div>
       </form>
     </div>
   )
